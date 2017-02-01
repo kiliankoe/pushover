@@ -113,11 +113,19 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		398340FB1E421AB70086BF82 /* Tests */ = {
+			isa = PBXGroup;
+			children = (
+				52D6D9971BEFF375002C0205 /* PushoverTests.swift */,
+			);
+			name = Tests;
+			sourceTree = "<group>";
+		};
 		52D6D9721BEFF229002C0205 = {
 			isa = PBXGroup;
 			children = (
 				52D6D9961BEFF375002C0205 /* Pushover.swift */,
-				52D6D9971BEFF375002C0205 /* PushoverTests.swift */,
+				398340FB1E421AB70086BF82 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
 				52D6D97D1BEFF229002C0205 /* Products */,
 			);
