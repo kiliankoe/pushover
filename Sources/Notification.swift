@@ -16,6 +16,10 @@ public struct Notification {
     let priority: Priority = .normal
     let sound: Sound? = nil
 
+    public init(message: String) {
+        self.message = message
+    }
+
     var asParams: [String: String] {
         var params = [String: String]()
 
