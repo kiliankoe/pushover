@@ -9,5 +9,8 @@
 import Foundation
 
 enum Endpoint {
-    static let apiBaseV1 = URL(string: "https://api.pushover.net/1/messages.json")!
+    static let apiBaseV1 = URL(string: "https://api.pushover.net/1/")!
+
+    static let messages = URL(string: "messages.json", relativeTo: Endpoint.apiBaseV1)!
+    static let validate = URL(string: "validate.json", relativeTo: Endpoint.apiBaseV1)!
 }
