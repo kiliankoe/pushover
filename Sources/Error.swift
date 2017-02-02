@@ -8,7 +8,13 @@
 
 import Foundation
 
+/// Possible error case that can be encountered.
+///
+/// - invalidRequest: The API didn't accept the request with a failure message.
+/// - server: Something unexpected went wrong on the server side.
+/// - network: Sending of the request failed.
 public enum Error: Swift.Error {
     case invalidRequest(message: String)
-    case serverError
+    case server
+    case network
 }
