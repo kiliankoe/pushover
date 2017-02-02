@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum Error: Swift.Error {
-    case InvalidRequest(message: String)
-    case ServerError
+public enum Error: Swift.Error {
+    case invalidRequest(message: String)
+    case serverError
 }
