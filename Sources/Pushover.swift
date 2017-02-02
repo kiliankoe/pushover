@@ -15,7 +15,7 @@ public struct Pushover {
         self.token = token
     }
 
-    public func send(notification: Notification, _ completion: @escaping () -> Void) {
+    public func send(_ notification: Notification, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: (() -> Void)? = nil) {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
         request.add(notification: notification)
@@ -24,7 +24,7 @@ public struct Pushover {
             print(response!)
             print(data!)
 
-            completion()
+            succeed?()
         }.resume()
     }
 }
