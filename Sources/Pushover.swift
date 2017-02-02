@@ -17,6 +17,7 @@ public struct Pushover {
 
     public func send(notification: Notification, _ completion: @escaping () -> Void) {
         var request = URLRequest(url: Endpoint.messages)
+        request.httpMethod = "POST"
         request.add(notification: notification)
 
         URLSession.shared.dataTask(with: request) { data, response, error in
