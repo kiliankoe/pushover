@@ -15,6 +15,7 @@ public struct Notification {
     let title: String? = nil
     let url: String? = nil
     let urlTitle: String? = nil
+    let timestamp: Date? = nil
     let priority: Priority = .normal
     let sound: Sound? = nil
 
@@ -32,6 +33,7 @@ public struct Notification {
         if let title = title { params["title"] = title }
         if let url = url { params["url"] = url }
         if let urlTitle = urlTitle { params["url_title"] = urlTitle }
+        if let timestamp = timestamp { params["timestamp"] = "\(timestamp.timeIntervalSince1970)" }
         params["priority"] = "\(priority.rawValue)"
         if let sound = sound { params["sound"] = sound.rawValue }
 
