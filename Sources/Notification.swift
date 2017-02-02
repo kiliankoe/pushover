@@ -10,20 +10,25 @@ import Foundation
 
 public struct Notification {
     let message: String
+    let user: String
+    let devices: [String]? = nil
     let title: String? = nil
     let url: String? = nil
     let urlTitle: String? = nil
     let priority: Priority = .normal
     let sound: Sound? = nil
 
-    public init(message: String) {
+    public init(message: String, to user: String) {
         self.message = message
+        self.user = user
     }
 
     var asParams: [String: String] {
         var params = [String: String]()
 
         params["message"] = message
+        params["user"] = user
+        if let devices = devices { params["device"] = devices.joined(separator: ",") }
         if let title = title { params["title"] = title }
         if let url = url { params["url"] = url }
         if let urlTitle = urlTitle { params["url_title"] = urlTitle }
