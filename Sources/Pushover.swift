@@ -25,14 +25,14 @@ public struct Pushover {
         request.httpMethod = "POST"
         request.add(notification: notification)
 
-        API.send(request, onFailure: fail) { (statusCode, json) in
+        API.send(request, onFailure: fail) { (statusCode, headers, json) in
             if case 400...499 = statusCode {
                 let errors = json["errors"] as? [String] ?? []
                 fail?(.invalidRequest(errors: errors))
                 return
             }
 
-            guard let response = Response(fromJSON: json) else { fail?(.decoding); return }
+            guard let response = Response(fromJSON: json, andHeaders: headers) else { fail?(.decoding); return }
 
             succeed?(response)
         }
