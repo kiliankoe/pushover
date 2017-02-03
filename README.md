@@ -1,5 +1,12 @@
 # 📌 Pushover
 
+[![Travis](https://img.shields.io/travis/kiliankoe/pushover.svg?style=flat-square)](https://travis-ci.org/kiliankoe/pushover)
+[![Version](https://img.shields.io/cocoapods/v/Pushover.svg?style=flat-square)](http://cocoapods.org/pods/Pushover)
+[![License](https://img.shields.io/cocoapods/l/Pushover.svg?style=flat-square)](http://cocoapods.org/pods/Pushover)
+[![Platform](https://img.shields.io/cocoapods/p/Pushover.svg?style=flat-square)](http://cocoapods.org/pods/Pushover)
+[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Pushover.svg?style=flat-square)](http://cocoadocs.org/docsets/Pushover)
+[![Codecov](https://img.shields.io/codecov/c/github/kiliankoe/pushover.svg?style=flat-square)](https://codecov.io/gh/kiliankoe/pushover)
+
 Simple little wrapper for the [Pushover](https://pushover.net) API. Use it to send push notifications from your tools to your or your user's devices.
 
 ## Example
