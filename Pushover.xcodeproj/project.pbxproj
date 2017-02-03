@@ -34,6 +34,10 @@
 		395E250A1E446FFB0090BDD8 /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25091E446FFB0090BDD8 /* NotificationTests.swift */; };
 		395E250B1E446FFB0090BDD8 /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25091E446FFB0090BDD8 /* NotificationTests.swift */; };
 		395E250C1E446FFB0090BDD8 /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25091E446FFB0090BDD8 /* NotificationTests.swift */; };
+		395E250E1E44B0EC0090BDD8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E250D1E44B0EC0090BDD8 /* Result.swift */; };
+		395E250F1E44B0EC0090BDD8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E250D1E44B0EC0090BDD8 /* Result.swift */; };
+		395E25101E44B0EC0090BDD8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E250D1E44B0EC0090BDD8 /* Result.swift */; };
+		395E25111E44B0EC0090BDD8 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E250D1E44B0EC0090BDD8 /* Result.swift */; };
 		52D6D9871BEFF229002C0205 /* Pushover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Pushover.framework */; };
 		52D6D9981BEFF375002C0205 /* Pushover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6D9961BEFF375002C0205 /* Pushover.swift */; };
 		52D6D99B1BEFF375002C0205 /* PushoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6D9971BEFF375002C0205 /* PushoverTests.swift */; };
@@ -78,6 +82,7 @@
 		395E24FF1E4382540090BDD8 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = Sources/API.swift; sourceTree = "<group>"; };
 		395E25041E4461600090BDD8 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/Response.swift; sourceTree = "<group>"; };
 		395E25091E446FFB0090BDD8 /* NotificationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationTests.swift; path = Tests/PushoverTests/NotificationTests.swift; sourceTree = "<group>"; };
+		395E250D1E44B0EC0090BDD8 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Result.swift; path = Sources/Result.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* Pushover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pushover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* Pushover-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pushover-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9961BEFF375002C0205 /* Pushover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pushover.swift; path = Sources/Pushover.swift; sourceTree = "<group>"; };
@@ -160,12 +165,13 @@
 			isa = PBXGroup;
 			children = (
 				52D6D9961BEFF375002C0205 /* Pushover.swift */,
-				395E24FF1E4382540090BDD8 /* API.swift */,
 				395E24FA1E4233D80090BDD8 /* Notification.swift */,
-				395E25041E4461600090BDD8 /* Response.swift */,
 				395E24EB1E421B150090BDD8 /* Endpoint.swift */,
-				395E24F01E421EB00090BDD8 /* Error.swift */,
+				395E24FF1E4382540090BDD8 /* API.swift */,
 				395E24F51E4233AF0090BDD8 /* Sound.swift */,
+				395E25041E4461600090BDD8 /* Response.swift */,
+				395E24F01E421EB00090BDD8 /* Error.swift */,
+				395E250D1E44B0EC0090BDD8 /* Result.swift */,
 				398340FB1E421AB70086BF82 /* Tests */,
 				52D6D99C1BEFF38C002C0205 /* Configs */,
 				52D6D97D1BEFF229002C0205 /* Products */,
@@ -497,6 +503,7 @@
 				52D6D9981BEFF375002C0205 /* Pushover.swift in Sources */,
 				395E25001E4382540090BDD8 /* API.swift in Sources */,
 				395E24F61E4233AF0090BDD8 /* Sound.swift in Sources */,
+				395E250E1E44B0EC0090BDD8 /* Result.swift in Sources */,
 				395E25051E4461600090BDD8 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -520,6 +527,7 @@
 				52D6D9EA1BEFFFA4002C0205 /* Pushover.swift in Sources */,
 				395E25021E4382540090BDD8 /* API.swift in Sources */,
 				395E24F81E4233AF0090BDD8 /* Sound.swift in Sources */,
+				395E25101E44B0EC0090BDD8 /* Result.swift in Sources */,
 				395E25071E4461600090BDD8 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -534,6 +542,7 @@
 				52D6DA091BF00081002C0205 /* Pushover.swift in Sources */,
 				395E25031E4382540090BDD8 /* API.swift in Sources */,
 				395E24F91E4233AF0090BDD8 /* Sound.swift in Sources */,
+				395E25111E44B0EC0090BDD8 /* Result.swift in Sources */,
 				395E25081E4461600090BDD8 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -548,6 +557,7 @@
 				52D6DA261BF00118002C0205 /* Pushover.swift in Sources */,
 				395E25011E4382540090BDD8 /* API.swift in Sources */,
 				395E24F71E4233AF0090BDD8 /* Sound.swift in Sources */,
+				395E250F1E44B0EC0090BDD8 /* Result.swift in Sources */,
 				395E25061E4461600090BDD8 /* Response.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
