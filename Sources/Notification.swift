@@ -16,7 +16,7 @@ public struct Notification {
     public var url: String? = nil
     public var urlTitle: String? = nil
     public var timestamp: Date? = nil
-    public var priority: Priority = .normal
+    public var priority: Priority? = nil
     public var sound: Sound? = nil
     public var isHTML: Bool? = nil
     /// To be used with .emergency priority. How often to retry sending in seconds. Must be >=30.
@@ -43,7 +43,7 @@ public struct Notification {
         if let url = url { params["url"] = url }
         if let urlTitle = urlTitle { params["url_title"] = urlTitle }
         if let timestamp = timestamp { params["timestamp"] = "\(timestamp.timeIntervalSince1970)" }
-        params["priority"] = "\(priority.rawValue)"
+        if let priority = priority { params["priority"] = "\(priority.rawValue)" }
         if let sound = sound { params["sound"] = sound.rawValue }
         if let isHTML = isHTML, isHTML { params["html"] = "1" }
         if let retryIn = retryIn { params["retry"] = "\(retryIn)" }

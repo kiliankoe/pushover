@@ -31,6 +31,9 @@
 		395E25061E4461600090BDD8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25041E4461600090BDD8 /* Response.swift */; };
 		395E25071E4461600090BDD8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25041E4461600090BDD8 /* Response.swift */; };
 		395E25081E4461600090BDD8 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25041E4461600090BDD8 /* Response.swift */; };
+		395E250A1E446FFB0090BDD8 /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25091E446FFB0090BDD8 /* NotificationTests.swift */; };
+		395E250B1E446FFB0090BDD8 /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25091E446FFB0090BDD8 /* NotificationTests.swift */; };
+		395E250C1E446FFB0090BDD8 /* NotificationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 395E25091E446FFB0090BDD8 /* NotificationTests.swift */; };
 		52D6D9871BEFF229002C0205 /* Pushover.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 52D6D97C1BEFF229002C0205 /* Pushover.framework */; };
 		52D6D9981BEFF375002C0205 /* Pushover.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6D9961BEFF375002C0205 /* Pushover.swift */; };
 		52D6D99B1BEFF375002C0205 /* PushoverTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 52D6D9971BEFF375002C0205 /* PushoverTests.swift */; };
@@ -74,6 +77,7 @@
 		395E24FA1E4233D80090BDD8 /* Notification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Notification.swift; path = Sources/Notification.swift; sourceTree = "<group>"; };
 		395E24FF1E4382540090BDD8 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = API.swift; path = Sources/API.swift; sourceTree = "<group>"; };
 		395E25041E4461600090BDD8 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Response.swift; path = Sources/Response.swift; sourceTree = "<group>"; };
+		395E25091E446FFB0090BDD8 /* NotificationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = NotificationTests.swift; path = Tests/PushoverTests/NotificationTests.swift; sourceTree = "<group>"; };
 		52D6D97C1BEFF229002C0205 /* Pushover.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pushover.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9861BEFF229002C0205 /* Pushover-iOS Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Pushover-iOS Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		52D6D9961BEFF375002C0205 /* Pushover.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pushover.swift; path = Sources/Pushover.swift; sourceTree = "<group>"; };
@@ -147,6 +151,7 @@
 			isa = PBXGroup;
 			children = (
 				52D6D9971BEFF375002C0205 /* PushoverTests.swift */,
+				395E25091E446FFB0090BDD8 /* NotificationTests.swift */,
 			);
 			name = Tests;
 			sourceTree = "<group>";
@@ -500,6 +505,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395E250A1E446FFB0090BDD8 /* NotificationTests.swift in Sources */,
 				52D6D99B1BEFF375002C0205 /* PushoverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -550,6 +556,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395E250B1E446FFB0090BDD8 /* NotificationTests.swift in Sources */,
 				DD7502861C68FDDC006590AF /* PushoverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -558,6 +565,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				395E250C1E446FFB0090BDD8 /* NotificationTests.swift in Sources */,
 				DD75029A1C690CBE006590AF /* PushoverTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
