@@ -4,7 +4,29 @@ Simple little wrapper for the [Pushover](https://pushover.net) API. Use it to se
 
 ## Example
 
-WIP
+```swift
+// Create a pushover object with your API token.
+let pushover = Pushover(token: "YOUR_TOKEN")
+
+// Send a simple message directly.
+pushover.send("Lorem ipsum dolor sit amet.", to: "USER_OR_GROUP_KEY")
+
+// Use `Notification`s to use more of Pushover's features.
+var notification = Notification(message: "Lorem ipsum.", to: "USER")
+notification.devices = ["iPhone"]
+notification.url = "https://example.com"
+notification.urlTitle = "Dolor sit amet"
+notification.priority = .high
+notification.sound = .intermission
+pushover.send(notification)
+
+// Use the callback closures to define actions based on error or success cases.
+pushover.send(notification, onFailure: { error in 
+	// Do something with `error`
+}) { response in
+  	// Contains info like the remaining notifications in your app's monthly limit.
+}
+```
 
 ## Requirements
 
