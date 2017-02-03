@@ -58,7 +58,7 @@ public enum Priority: Int {
     case quiet
     case normal
     case high
-    case requireConfirmation
+    case emergency
 }
 
 extension URLRequest {
