@@ -1,0 +1,22 @@
+# references:
+# * http://www.objc.io/issue-6/travis-ci.html
+# * https://github.com/supermarin/xcpretty#usage
+
+osx_image: xcode8
+language: objective-c
+
+before_install:
+- gem install xcpretty
+
+script:
+- xcodebuild -scheme Pushover-macOS | xcpretty
+- xcodebuild test -scheme Pushover-macOS | xcpretty
+- pod lib lint
+- swift test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+notifications:
+  email:
+    on_success: never
