@@ -18,6 +18,7 @@ public struct Notification {
     public let timestamp: Date? = nil
     public let priority: Priority = .normal
     public let sound: Sound? = nil
+    public let isHTML: Bool? = nil
 
     public init(message: String, to users: [String]) {
         self.message = message
@@ -40,6 +41,7 @@ public struct Notification {
         if let timestamp = timestamp { params["timestamp"] = "\(timestamp.timeIntervalSince1970)" }
         params["priority"] = "\(priority.rawValue)"
         if let sound = sound { params["sound"] = sound.rawValue }
+        if let isHTML = isHTML, isHTML { params["html"] = "1" }
 
         return params
     }
