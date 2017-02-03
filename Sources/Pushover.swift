@@ -15,26 +15,23 @@ public struct Pushover {
         self.token = token
     }
 
-    public func send(_ message: String, to user: String, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: ((Response) -> Void)? = nil) {
-        let notification = Notification(message: message, to: user)
-        send(notification, onFailure: fail, onSuccess: succeed)
+    public func send(_ message: String, to user: String, completion: @escaping (Result<Response, Error>) -> Void) {
+        send(Notification(message: message, to: user), completion: completion)
     }
 
-    public func send(_ notification: Notification, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: ((Response) -> Void)? = nil) {
+    public func send(_ notification: Notification, completion: @escaping (Result<Response, Error>) -> Void) {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
         request.add(notification: notification, withToken: self.token)
 
-        API.send(request, onFailure: fail) { (statusCode, headers, json) in
-            if case 400...499 = statusCode {
-                let errors = json["errors"] as? [String] ?? []
-                fail?(.invalidRequest(errors: errors))
-                return
+        API.send(request) { result in
+            switch result {
+            case let .failure(error):
+                completion(.failure(error))
+            case let .success((headers, json)):
+                guard let response = Response(fromJSON: json, andHeaders: headers) else { completion(.failure(.decoding)); return }
+                completion(.success(response))
             }
-
-            guard let response = Response(fromJSON: json, andHeaders: headers) else { fail?(.decoding); return }
-
-            succeed?(response)
         }
     }
 }

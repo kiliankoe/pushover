@@ -14,9 +14,9 @@ public struct Response {
     let message: String?
     let errors: [String]?
 
-    let limit: UInt
-    let remaining: UInt
-    let reset: Date
+    var limit: UInt? = nil
+    var remaining: UInt? = nil
+    var reset: Date? = nil
 
     init?(fromJSON json: JSON, andHeaders headers: [String: String]) {
         guard let status = json["status"] as? Int,
@@ -29,14 +29,8 @@ public struct Response {
         self.message = json["message"] as? String
         self.errors = json["errors"] as? [String]
 
-        guard let limit = headers["X-Limit-App-Limit"],
-            let remaining = headers["X-Limit-App-Remaining"],
-            let reset = headers["X-Limit-App-Reset"] else {
-                return nil
-        }
-
-        self.limit = UInt(limit) ?? 0
-        self.remaining = UInt(remaining) ?? 0
-        self.reset = Date(timeIntervalSince1970: Double(reset) ?? 0)
+        if let limit = headers["X-Limit-App-Limit"] { self.limit = UInt(limit) ?? 0 }
+        if let remaining = headers["X-Limit-App-Remaining"] { self.remaining = UInt(remaining) ?? 0 }
+        if let reset = headers["X-Limit-App-Reset"] { self.reset = Date(timeIntervalSince1970: Double(reset) ?? 0) }
     }
 }
