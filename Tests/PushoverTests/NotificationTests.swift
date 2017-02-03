@@ -16,34 +16,35 @@ class NotificationTests: XCTestCase {
         XCTAssert(not.paramsString.contains("message=foobar"))
         XCTAssert(not.paramsString.contains("user=barbaz"))
 
-        not.devices = ["device1", "device2"]
+        not.devices(["device1", "device2"])
+        print(not)
         XCTAssert(not.paramsString.contains("device=device1,device2"))
 
-        not.title = "some title"
+        not.title("some title")
         XCTAssert(not.paramsString.contains("title=some%20title"))
 
-        not.url = "http://example.com"
+        not.url("http://example.com")
         XCTAssert(not.paramsString.contains("url=http://example.com"))
 
-        not.urlTitle = "title for url"
+        not.urlTitle("title for url")
         XCTAssert(not.paramsString.contains("url_title=title%20for%20url"))
 
-        not.timestamp = Date(timeIntervalSince1970: 100)
+        not.timestamp(Date(timeIntervalSince1970: 100))
         XCTAssert(not.paramsString.contains("timestamp=100"))
 
-        not.priority = .high
+        not.priority(.high)
         XCTAssert(not.paramsString.contains("priority=1"))
 
-        not.sound = .intermission
+        not.sound(.intermission)
         XCTAssert(not.paramsString.contains("sound=intermission"))
 
-        not.isHTML = true
+        not.isHTML(true)
         XCTAssert(not.paramsString.contains("html=1"))
 
-        not.retryIn = 60
+        not.retry(in: 60)
         XCTAssert(not.paramsString.contains("retry=60"))
 
-        not.expiresIn = 3600
+        not.expires(in: 3600)
         XCTAssert(not.paramsString.contains("expire=3600"))
     }
 
