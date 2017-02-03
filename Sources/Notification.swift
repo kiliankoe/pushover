@@ -12,12 +12,12 @@ public struct Notification {
 
     public var params = [String: String]()
 
-    init(message: String, to users: [String]) {
+    public init(message: String, to users: [String]) {
         self.params["message"] = message
         self.params["user"] = users.joined(separator: ",")
     }
 
-    init(message: String, to user: String) {
+    public init(message: String, to user: String) {
         self.init(message: message, to: [user])
     }
 
