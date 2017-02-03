@@ -15,7 +15,7 @@ import Foundation
 /// - network: Sending of the request failed.
 /// - decoding: The received data could not be decoded.
 public enum Error: Swift.Error {
-    case invalidRequest(message: String)
+    case invalidRequest(errors: [String])
     case server
     case network
     case decoding

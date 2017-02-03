@@ -15,16 +15,26 @@ public struct Pushover {
         self.token = token
     }
 
-    public func send(_ notification: Notification, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: (() -> Void)? = nil) {
+    public func send(_ message: String, to user: String, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: ((Response) -> Void)? = nil) {
+        let notification = Notification(message: message, to: user)
+        send(notification, onFailure: fail, onSuccess: succeed)
+    }
+
+    public func send(_ notification: Notification, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: ((Response) -> Void)? = nil) {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
         request.add(notification: notification)
 
-        URLSession.shared.dataTask(with: request) { data, response, error in
-            print(response!)
-            print(data!)
+        API.send(request, onFailure: fail) { (statusCode, json) in
+            if case 400...499 = statusCode {
+                let errors = json["errors"] as? [String] ?? []
+                fail?(.invalidRequest(errors: errors))
+                return
+            }
 
-            succeed?()
-        }.resume()
+            guard let response = Response(fromJSON: json) else { fail?(.decoding); return }
+
+            succeed?(response)
+        }
     }
 }
