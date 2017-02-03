@@ -16,10 +16,7 @@ class PushoverTests: XCTestCase {
     func testSimpleSend() {
         let e = expectation(description: "Send basic notification")
 
-        Pushover(token: EXAMPLE_TOKEN).send("Hello from Swift", to: "", onFailure: { error in
-            print(error)
-            e.fulfill()
-        }) { response in
+        Pushover(token: EXAMPLE_TOKEN).send("Hello from Swift", to: "") { result in
             e.fulfill()
         }
 
