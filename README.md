@@ -20,11 +20,11 @@ notification.priority(.high)
 notification.sound(.intermission)
 pushover.send(notification)
 
-// Use the callback closures to define actions based on error or success cases.
-pushover.send(notification, onFailure: { error in 
-	// Do something with `error`
-}) { response in
-  	// Contains info like the remaining notifications in your app's monthly limit.
+// Use the callback to define actions based on error or success cases.
+pushover.send(notification) { result in
+	// A .success result case means that there were no network, server or decoding errors.
+	// The request might still have failed due to a wrong API token, exceeded limits or
+	// other problems. Be sure to check the response value for more information.
 }
 ```
 
