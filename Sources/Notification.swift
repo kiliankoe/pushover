@@ -9,20 +9,20 @@
 import Foundation
 
 public struct Notification {
-    public let message: String
-    public let users: [String]
-    public let devices: [String]? = nil
-    public let title: String? = nil
-    public let url: String? = nil
-    public let urlTitle: String? = nil
-    public let timestamp: Date? = nil
-    public let priority: Priority = .normal
-    public let sound: Sound? = nil
-    public let isHTML: Bool? = nil
+    public var message: String
+    public var users: [String]
+    public var devices: [String]? = nil
+    public var title: String? = nil
+    public var url: String? = nil
+    public var urlTitle: String? = nil
+    public var timestamp: Date? = nil
+    public var priority: Priority = .normal
+    public var sound: Sound? = nil
+    public var isHTML: Bool? = nil
     /// To be used with .emergency priority. How often to retry sending in seconds. Must be >=30.
-    public let retryIn: UInt? = nil
+    public var retryIn: UInt? = nil
     /// To be used with .emergency priority. When should retrying expire in seconds. Must be <=86400 (24 hours).
-    public let expiresIn: UInt? = nil
+    public var expiresIn: UInt? = nil
 
     public init(message: String, to users: [String]) {
         self.message = message
