@@ -10,11 +10,24 @@ import Foundation
 import XCTest
 import Pushover
 
+let EXAMPLE_TOKEN = "azGDORePK8gMaC0QOYAMyEEuzJnyUi"
+
 class PushoverTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        //// XCTAssertEqual(Pushover().text, "Hello, World!")
+    func testSimpleSend() {
+        let e = expectation(description: "Send basic notification")
+
+        Pushover(token: EXAMPLE_TOKEN).send("Hello from Swift", to: "", onFailure: { error in
+            print(error)
+            e.fulfill()
+        }) { response in
+            e.fulfill()
+        }
+
+        waitForExpectations(timeout: 5) { error in
+            if let error = error {
+                XCTFail("\(error)")
+            }
+        }
     }
 }
 
@@ -22,7 +35,7 @@ class PushoverTests: XCTestCase {
 extension PushoverTests {
     static var allTests : [(String, (PushoverTests) -> () throws -> Void)] {
         return [
-            ("testExample", testExample),
+            ("testSimpleSend", testSimpleSend),
         ]
     }
 }
