@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Pushover API client which is used for all communication with the Pushover.net service.
 public struct Pushover {
     let token: String
 
@@ -15,10 +16,21 @@ public struct Pushover {
         self.token = token
     }
 
+    /// Send a message directly to a user bypassing further customization options.
+    ///
+    /// - Parameters:
+    ///   - message: message to be sent
+    ///   - user: recipient
+    ///   - completion: handler provided with a result value
     public func send(_ message: String, to user: String, completion: @escaping (Result<Response, Error>) -> Void) {
         send(Notification(message: message, to: user), completion: completion)
     }
 
+    /// Send a `Notification` to Pushover.
+    ///
+    /// - Parameters:
+    ///   - notification: notification to be sent
+    ///   - completion: handler provided with a result value
     public func send(_ notification: Notification, completion: @escaping (Result<Response, Error>) -> Void) {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"

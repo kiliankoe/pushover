@@ -8,14 +8,19 @@
 
 import Foundation
 
+/// A response from the Pushover API
 public struct Response {
     let status: Int
     let request: String
     let message: String?
+    /// Possible errors like wrong API or user keys.
     let errors: [String]?
 
+    /// Your app's limit
     var limit: UInt? = nil
+    /// Your app's remaining pushs for this time period.
     var remaining: UInt? = nil
+    /// Timestamp when your app's remaining count will be reset.
     var reset: Date? = nil
 
     init?(fromJSON json: JSON, andHeaders headers: [String: String]) {

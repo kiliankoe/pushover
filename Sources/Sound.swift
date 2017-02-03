@@ -8,6 +8,9 @@
 
 import Foundation
 
+/// Custom sounds.
+///
+/// See here for more details: https://pushover.net/api#sounds
 public enum Sound: String {
     case pushover
     case bike
