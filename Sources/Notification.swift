@@ -19,6 +19,10 @@ public struct Notification {
     public let priority: Priority = .normal
     public let sound: Sound? = nil
     public let isHTML: Bool? = nil
+    /// To be used with .emergency priority. How often to retry sending in seconds. Must be >=30.
+    public let retryIn: UInt? = nil
+    /// To be used with .emergency priority. When should retrying expire in seconds. Must be <=86400 (24 hours).
+    public let expiresIn: UInt? = nil
 
     public init(message: String, to users: [String]) {
         self.message = message
@@ -42,6 +46,8 @@ public struct Notification {
         params["priority"] = "\(priority.rawValue)"
         if let sound = sound { params["sound"] = sound.rawValue }
         if let isHTML = isHTML, isHTML { params["html"] = "1" }
+        if let retryIn = retryIn { params["retry"] = "\(retryIn)" }
+        if let expiresIn = expiresIn { params["expire"] = "\(expiresIn)" }
 
         return params
     }
