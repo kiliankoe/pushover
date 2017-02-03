@@ -68,8 +68,9 @@ public enum Priority: Int {
 }
 
 extension URLRequest {
-    mutating func add(notification: Notification) {
-        self.httpBody = notification.paramsString.data(using: .utf8)
+    mutating func add(notification: Notification, withToken token: String) {
+        let params = "token=\(token)&\(notification.paramsString)"
+        self.httpBody = params.data(using: .utf8)
     }
 }
 

@@ -23,7 +23,7 @@ public struct Pushover {
     public func send(_ notification: Notification, onFailure fail: ((Error) -> Void)? = nil, onSuccess succeed: ((Response) -> Void)? = nil) {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
-        request.add(notification: notification)
+        request.add(notification: notification, withToken: self.token)
 
         API.send(request, onFailure: fail) { (statusCode, headers, json) in
             if case 400...499 = statusCode {
