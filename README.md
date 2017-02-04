@@ -20,11 +20,11 @@ pushover.send("Lorem ipsum dolor sit amet.", to: "USER_OR_GROUP_KEY")
 
 // Use `Notification`s to use more of Pushover's features.
 var notification = Notification(message: "Lorem ipsum.", to: "USER")
-notification.devices(["iPhone"])
-notification.url("https://example.com")
-notification.urlTitle("Dolor sit amet")
-notification.priority(.high)
-notification.sound(.intermission)
+						.devices(["iPhone"])
+						.url("https://example.com")
+						.urlTitle("Dolor sit amet")
+						.priority(.high)
+						.sound(.intermission)
 pushover.send(notification)
 
 // Use the callback to define actions based on error or success cases.
