@@ -43,19 +43,25 @@ Also please read the *[Being Friendly to our API](https://pushover.net/api#frien
 
 ## Installation
 
-Pushover is available through Cocoapods. To install it, simply add the following line to your Podfile:
+Pushover is available through Cocoapods, Carthage/Punic and Swift Package Manager, take your pick.
+
+Copypasta for your Podfile:
 
 ```ruby
 pod 'Pushover'
 ```
 
-You can also use Swift Package Manager. For that, add the following to your dependencies in your Package.swift:
+Cartfile:
+
+```
+github "kiliankoe/pushover"
+```
+
+Package.swift:
 
 ```swift
 .Package(url: "https://github.com/kiliankoe/pushover", majorVersion: 0)
 ```
-
-It should also be available via Carthage/Punic, although I have not yet verified this.
 
 ## Contributors
 
