@@ -12,39 +12,29 @@ import XCTest
 
 class NotificationTests: XCTestCase {
     func testParamsAvailability() {
-        var not = Notification(message: "foobar", to: "barbaz")
+        let not = Notification(message: "foobar", to: "bar", "baz")
+            .devices(["device1", "device2"])
+            .title("some title")
+            .url("http://example.com")
+            .urlTitle("title for url")
+            .timestamp(Date(timeIntervalSince1970: 100))
+            .priority(.high)
+            .sound(.intermission)
+            .isHTML(true)
+            .retry(in: 60)
+            .expires(in: 3600)
+
         XCTAssert(not.paramsString.contains("message=foobar"))
-        XCTAssert(not.paramsString.contains("user=barbaz"))
-
-        not.devices(["device1", "device2"])
-        print(not)
+        XCTAssert(not.paramsString.contains("user=bar,baz"))
         XCTAssert(not.paramsString.contains("device=device1,device2"))
-
-        not.title("some title")
         XCTAssert(not.paramsString.contains("title=some%20title"))
-
-        not.url("http://example.com")
         XCTAssert(not.paramsString.contains("url=http://example.com"))
-
-        not.urlTitle("title for url")
         XCTAssert(not.paramsString.contains("url_title=title%20for%20url"))
-
-        not.timestamp(Date(timeIntervalSince1970: 100))
         XCTAssert(not.paramsString.contains("timestamp=100"))
-
-        not.priority(.high)
         XCTAssert(not.paramsString.contains("priority=1"))
-
-        not.sound(.intermission)
         XCTAssert(not.paramsString.contains("sound=intermission"))
-
-        not.isHTML(true)
         XCTAssert(not.paramsString.contains("html=1"))
-
-        not.retry(in: 60)
         XCTAssert(not.paramsString.contains("retry=60"))
-
-        not.expires(in: 3600)
         XCTAssert(not.paramsString.contains("expire=3600"))
     }
 
@@ -63,15 +53,9 @@ class NotificationTests: XCTestCase {
         XCTAssert(bodyStr.contains("message=foobar"))
         XCTAssert(bodyStr.contains("user=barbaz"))
     }
-}
 
-#if os(Linux)
-    extension NotificationTests {
-        static var allTests : [(String, (NotificationTests) -> () throws -> Void)] {
-            return [
-                ("testParamsAvailability", testParamsAvailability),
-                ("testAddingOnRequest", testAddingOnRequest),
-            ]
-        }
-    }
-#endif
+    static var allTests = [
+        ("testParamsAvailability", testParamsAvailability),
+        ("testAddingOnRequest", testAddingOnRequest),
+    ]
+}

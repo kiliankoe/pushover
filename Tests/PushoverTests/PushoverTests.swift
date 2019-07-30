@@ -31,12 +31,12 @@ class PushoverTests: XCTestCase {
     func testAdvancedNotification() {
         let e = expectation(description: "Send advanced notification")
 
-        var notification = Notification(message: "Hello from Swift", to: EXAMPLE_USER)
-        notification.title("foobar")
-        notification.devices(["iphone"])
-        notification.priority(.high)
-        notification.sound(.classical)
-        notification.timestamp(Date())
+        let notification = Notification(message: "Hello from Swift", to: EXAMPLE_USER)
+            .title("foobar")
+            .devices(["iphone"])
+            .priority(.high)
+            .sound(.classical)
+            .timestamp(Date())
 
         Pushover(token: EXAMPLE_TOKEN).send(notification) { result in
             e.fulfill()
@@ -48,14 +48,8 @@ class PushoverTests: XCTestCase {
             }
         }
     }
-}
 
-#if os(Linux)
-extension PushoverTests {
-    static var allTests : [(String, (PushoverTests) -> () throws -> Void)] {
-        return [
-            ("testSimpleSend", testSimpleSend),
-        ]
-    }
+    static var allTests = [
+        ("testSimpleSend", testSimpleSend),
+    ]
 }
-#endif
