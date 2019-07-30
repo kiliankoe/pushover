@@ -23,9 +23,9 @@ pushover.send(notification)
 
 // Use the callback to define actions based on error or success cases.
 pushover.send(notification) { result in
-	// A .success result case means that there were no network, server or decoding errors.
-	// The request might still have failed due to a wrong API token, exceeded limits or
-	// other problems. Be sure to check the response value for more information.
+    // A .success result case means that there were no network, server or decoding errors.
+    // The request might still have failed due to a wrong API token, exceeded limits or
+    // other problems. Be sure to check the response value for more information.
 }
 ```
 
