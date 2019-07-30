@@ -1,12 +1,5 @@
 # 📌 Pushover
 
-[![Travis](https://img.shields.io/travis/kiliankoe/pushover.svg?style=flat-square)](https://travis-ci.org/kiliankoe/pushover)
-[![Version](https://img.shields.io/cocoapods/v/Pushover.svg?style=flat-square)](http://cocoapods.org/pods/Pushover)
-[![License](https://img.shields.io/cocoapods/l/Pushover.svg?style=flat-square)](http://cocoapods.org/pods/Pushover)
-[![Platform](https://img.shields.io/cocoapods/p/Pushover.svg?style=flat-square)](http://cocoapods.org/pods/Pushover)
-[![Docs](https://img.shields.io/cocoapods/metrics/doc-percent/Pushover.svg?style=flat-square)](http://cocoadocs.org/docsets/Pushover)
-[![Codecov](https://img.shields.io/codecov/c/github/kiliankoe/pushover.svg?style=flat-square)](https://codecov.io/gh/kiliankoe/pushover)
-
 Simple little wrapper for the [Pushover](https://pushover.net) API. Use it to send push notifications from your tools to your or your user's devices.
 
 ## Example
@@ -25,6 +18,7 @@ let notification = Notification(message: "Lorem ipsum.", to: "USER")
     .urlTitle("Dolor sit amet")
     .priority(.high)
     .sound(.intermission)
+
 pushover.send(notification)
 
 // Use the callback to define actions based on error or success cases.
@@ -43,24 +37,12 @@ Also please read the *[Being Friendly to our API](https://pushover.net/api#frien
 
 ## Installation
 
-Pushover is available through Cocoapods, Carthage/Punic and Swift Package Manager, take your pick.
-
-Copypasta for your Podfile:
-
-```ruby
-pod 'Pushover'
-```
-
-Cartfile:
-
-```
-github "kiliankoe/pushover"
-```
+Pushover is available via Swift Package Manager.
 
 Package.swift:
 
 ```swift
-.Package(url: "https://github.com/kiliankoe/pushover", majorVersion: 0)
+.package(url: "https://github.com/kiliankoe/pushover", from: "<#latest#>")
 ```
 
 ## Contributors
