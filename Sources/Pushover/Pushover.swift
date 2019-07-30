@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Dispatch
 
 /// Pushover API client which is used for all communication with the Pushover.net service.
 public struct Pushover {
@@ -45,5 +46,23 @@ public struct Pushover {
                 completion(.success(response))
             }
         }
+    }
+
+
+    /// Send a `Notification` synchronously.
+    ///
+    /// - Parameter notification: notification to be sent
+    /// - Returns: result value
+    @discardableResult public func sendSynchronously(_ notification: Notification) -> Result<Response, Error> {
+        let sema = DispatchSemaphore(value: 0)
+        var result: Result<Response, Error>! = nil
+
+        self.send(notification) { res in
+            result = res
+            sema.signal()
+        }
+
+        sema.wait()
+        return result
     }
 }
