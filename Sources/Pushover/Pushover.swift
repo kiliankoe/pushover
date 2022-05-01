@@ -30,6 +30,21 @@ public struct Pushover {
         send(Notification(message: message, to: user), completion: completion)
     }
 
+    /// Send a message directly to a user bypassing further customization options.
+    ///
+    /// - Parameters:
+    ///   - message: message to be sent
+    ///   - user: recipient
+    ///
+    /// - Returns: The response value
+    @available(macOS 10.15, iOS 13.0, macCatalyst 13.0, tvOS 13.0, watchOS 13.0, *)
+    @discardableResult
+    public func send(_ message: String, to user: String) async throws -> Response {
+        return try await withCheckedThrowingContinuation { continuation in
+            send(message, to: user, completion: continuation.resume)
+        }
+    }
+
     /// Send a `Notification` to Pushover.
     ///
     /// - Parameters:
@@ -51,12 +66,24 @@ public struct Pushover {
         }
     }
 
+    /// Send a `Notification` to Pushover.
+    ///
+    /// - Parameter notification: notification to be sent
+    /// - Returns: The response value
+    @available(macOS 10.15, iOS 13.0, macCatalyst 13.0, tvOS 13.0, watchOS 13.0, *)
+    @discardableResult
+    public func send(_ notification: Notification) async throws -> Response {
+        return try await withCheckedThrowingContinuation { continuation in
+            send(notification, completion: continuation.resume)
+        }
+    }
 
     /// Send a `Notification` synchronously.
     ///
     /// - Parameter notification: notification to be sent
     /// - Returns: result value
-    @discardableResult public func sendSynchronously(_ notification: Notification) -> Result<Response, Error> {
+    @discardableResult
+    public func sendSynchronously(_ notification: Notification) -> Result<Response, Error> {
         let sema = DispatchSemaphore(value: 0)
         var result: Result<Response, Error>! = nil
 
