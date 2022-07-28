@@ -9,6 +9,9 @@
 import Foundation
 import XCTest
 @testable import Pushover
+#if canImport(FoundationNetworking)
+import FoundationNetworking
+#endif
 
 class NotificationTests: XCTestCase {
     func testParamsAvailability() {
