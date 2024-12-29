@@ -9,7 +9,7 @@
 import Foundation
 
 /// A response from the Pushover API
-public struct Response {
+public struct Response: Sendable {
     let status: Int
     let request: String
     let message: String?
@@ -17,11 +17,11 @@ public struct Response {
     let errors: [String]?
 
     /// Your app's limit
-    var limit: UInt? = nil
+    let limit: UInt?
     /// Your app's remaining pushs for this time period.
-    var remaining: UInt? = nil
+    let remaining: UInt?
     /// Timestamp when your app's remaining count will be reset.
-    var reset: Date? = nil
+    let reset: Date?
 
     init?(fromJSON json: JSON, andHeaders headers: [String: String]) {
         guard let status = json["status"] as? Int,
@@ -34,8 +34,8 @@ public struct Response {
         self.message = json["message"] as? String
         self.errors = json["errors"] as? [String]
 
-        if let limit = headers["X-Limit-App-Limit"] { self.limit = UInt(limit) ?? 0 }
-        if let remaining = headers["X-Limit-App-Remaining"] { self.remaining = UInt(remaining) ?? 0 }
-        if let reset = headers["X-Limit-App-Reset"] { self.reset = Date(timeIntervalSince1970: Double(reset) ?? 0) }
+        limit = if let limit = headers["X-Limit-App-Limit"] { UInt(limit) ?? 0 } else { nil }
+        remaining = if let remaining = headers["X-Limit-App-Remaining"] { UInt(remaining) ?? 0 } else { nil }
+        reset = if let reset = headers["X-Limit-App-Reset"] { Date(timeIntervalSince1970: Double(reset) ?? 0) } else { nil }
     }
 }
