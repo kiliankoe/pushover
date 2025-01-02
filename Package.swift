@@ -1,9 +1,17 @@
-// swift-tools-version:5.5
+// swift-tools-version:5.10
 
 import PackageDescription
 
 let package = Package(
     name: "Pushover",
+    platforms: [
+        .macOS(.v10_15),
+        .iOS(.v13),
+        .macCatalyst(.v13),
+        .watchOS(.v6),
+        .tvOS(.v13),
+        .visionOS(.v1)
+    ],
     products: [
         .library(
             name: "Pushover",

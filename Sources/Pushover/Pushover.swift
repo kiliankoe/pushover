@@ -7,13 +7,12 @@
 //
 
 import Foundation
-import Dispatch
 #if canImport(FoundationNetworking)
 import FoundationNetworking
 #endif
 
 /// Pushover API client which is used for all communication with the Pushover.net service.
-public struct Pushover {
+public struct Pushover: Sendable {
     let token: String
 
     public init(token: String) {
@@ -26,7 +25,7 @@ public struct Pushover {
     ///   - message: message to be sent
     ///   - user: recipient
     ///   - completion: handler provided with a result value
-    public func send(_ message: String, to user: String, completion: @escaping (Result<Response, Error>) -> Void) {
+    public func send(_ message: String, to user: String, completion: @escaping @Sendable (Result<Response, Error>) -> Void) {
         send(Notification(message: message, to: user), completion: completion)
     }
 
@@ -41,7 +40,9 @@ public struct Pushover {
     @discardableResult
     public func send(_ message: String, to user: String) async throws -> Response {
         return try await withCheckedThrowingContinuation { continuation in
-            send(message, to: user, completion: continuation.resume)
+            send(message, to: user) {
+                continuation.resume(with: $0)
+            }
         }
     }
 
@@ -50,7 +51,7 @@ public struct Pushover {
     /// - Parameters:
     ///   - notification: notification to be sent
     ///   - completion: handler provided with a result value
-    public func send(_ notification: Notification, completion: @escaping (Result<Response, Error>) -> Void) {
+    public func send(_ notification: Notification, completion: @escaping @Sendable (Result<Response, Error>) -> Void) {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
         request.add(notification: notification, withToken: self.token)
@@ -74,25 +75,9 @@ public struct Pushover {
     @discardableResult
     public func send(_ notification: Notification) async throws -> Response {
         return try await withCheckedThrowingContinuation { continuation in
-            send(notification, completion: continuation.resume)
+            send(notification) {
+                continuation.resume(with: $0)
+            }
         }
-    }
-
-    /// Send a `Notification` synchronously.
-    ///
-    /// - Parameter notification: notification to be sent
-    /// - Returns: result value
-    @discardableResult
-    public func sendSynchronously(_ notification: Notification) -> Result<Response, Error> {
-        let sema = DispatchSemaphore(value: 0)
-        var result: Result<Response, Error>! = nil
-
-        self.send(notification) { res in
-            result = res
-            sema.signal()
-        }
-
-        sema.wait()
-        return result
     }
 }

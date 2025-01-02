@@ -14,7 +14,7 @@ import FoundationNetworking
 typealias JSON = [String: Any]
 
 enum API {
-    static func send(_ request: URLRequest, completion: @escaping (Result<([String: String], JSON), Error>) -> Void) {
+    static func send(_ request: URLRequest, completion: @escaping @Sendable (Result<([String: String], JSON), Error>) -> Void) {
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let _ = error { completion(.failure(.network)); return }
 
