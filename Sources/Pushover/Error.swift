@@ -9,12 +9,13 @@
 import Foundation
 
 /// Possible error case that can be encountered.
-///
-/// - server: Something unexpected went wrong on the server side.
-/// - network: Sending of the request failed.
-/// - decoding: The received data could not be decoded.
 public enum Error: Swift.Error {
+    /// Something unexpected went wrong on the server side.
     case server
+
+    /// Sending of the request failed.
     case network
+
+    /// The received data could not be decoded.
     case decoding
 }
