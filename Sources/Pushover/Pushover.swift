@@ -27,6 +27,7 @@ public struct Pushover: Sendable {
     ///
     /// - Throws: An ``Error`` case.
     /// - Returns: The ``Response`` value.
+    @discardableResult
     public func send(_ message: String, to user: String) async throws(PushoverError) -> Response {
         try await send(Notification(message: message, to: user))
     }
@@ -36,6 +37,7 @@ public struct Pushover: Sendable {
     /// - Parameter notification: notification to be sent
     /// - Throws: An ``Error`` case.
     /// - Returns: The ``Response`` value.
+    @discardableResult
     public func send(_ notification: Notification) async throws(PushoverError) -> Response {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
