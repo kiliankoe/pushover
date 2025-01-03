@@ -27,7 +27,7 @@ public struct Pushover: Sendable {
     ///
     /// - Throws: An ``Error`` case.
     /// - Returns: The ``Response`` value.
-    public func send(_ message: String, to user: String) async throws(Error) -> Response {
+    public func send(_ message: String, to user: String) async throws(PushoverError) -> Response {
         try await send(Notification(message: message, to: user))
     }
 
@@ -36,14 +36,14 @@ public struct Pushover: Sendable {
     /// - Parameter notification: notification to be sent
     /// - Throws: An ``Error`` case.
     /// - Returns: The ``Response`` value.
-    public func send(_ notification: Notification) async throws(Error) -> Response {
+    public func send(_ notification: Notification) async throws(PushoverError) -> Response {
         var request = URLRequest(url: Endpoint.messages)
         request.httpMethod = "POST"
         request.add(notification: notification, withToken: self.token)
 
         let (headers, json) = try await API.send(request)
         guard let response = Response(fromJSON: json, andHeaders: headers) else {
-            throw Error.decoding
+            throw PushoverError.decoding
         }
         return response
     }

@@ -14,26 +14,26 @@ import FoundationNetworking
 typealias JSON = [String: Any]
 
 enum API {
-    static func send(_ request: URLRequest) async throws(Error) -> ([String: String], JSON) {
+    static func send(_ request: URLRequest) async throws(PushoverError) -> ([String: String], JSON) {
         do {
             let (data, response) = try await URLSession.shared.data(for: request)
 
             guard let httpResponse = response as? HTTPURLResponse,
                   let headers = httpResponse.allHeaderFields as? [String: String]
             else {
-                throw Error.network
+                throw PushoverError.network
             }
 
             if case 500...599 = httpResponse.statusCode {
-                throw Error.server
+                throw PushoverError.server
             }
 
             guard let deserialized = try? JSONSerialization.jsonObject(with: data, options: .fragmentsAllowed) as? JSON else {
-                throw Error.decoding
+                throw PushoverError.decoding
             }
             return (headers, deserialized)
         } catch {
-            throw Error.network
+            throw PushoverError.network
         }
     }
 }

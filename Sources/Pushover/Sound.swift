@@ -6,8 +6,6 @@
 //  Copyright © 2017 Kilian Koeltzsch. All rights reserved.
 //
 
-import Foundation
-
 /// Custom sounds.
 ///
 /// See here for more details: https://pushover.net/api#sounds
