@@ -6,26 +6,25 @@ Simple little wrapper for the [Pushover](https://pushover.net) API. Use it to se
 
 ```swift
 // Create a pushover object with your API token.
-let pushover = Pushover(token: "YOUR_TOKEN")
+let pushover = Pushover(token: "<#API_TOKEN#>")
 
 // Send a simple message directly.
-pushover.send("Lorem ipsum dolor sit amet.", to: "USER_OR_GROUP_KEY")
+try await pushover.send("Lorem ipsum dolor sit amet.", to: "<#USER_OR_GROUP_KEY#>")
 
 // Use `Notification`s to use more of Pushover's features.
-let notification = Notification(message: "Lorem ipsum.", to: "USER")
+let notification = Notification(message: "Lorem ipsum.", to: "<#USER#>")
     .devices(["iPhone"])
     .url("https://example.com")
     .urlTitle("Dolor sit amet")
     .priority(.high)
     .sound(.intermission)
 
-pushover.send(notification)
-
-// Use the callback to define actions based on error or success cases.
-pushover.send(notification) { result in
-    // A .success result case means that there were no network, server or decoding errors.
+do {
+    let response = try await pushover.send(notification)
     // The request might still have failed due to a wrong API token, exceeded limits or
     // other problems. Be sure to check the response value for more information.
+} catch {
+    // An error case means that there was a network, server or decoding error.
 }
 ```
 
@@ -47,7 +46,8 @@ Package.swift:
 
 ## Contributors
 
-Kilian Koeltzsch, [@kiliankoe](https://github.com/kiliankoe)
+- Kilian Koeltzsch, [@kiliankoe](https://github.com/kiliankoe)
+- Sören Gade, [@sgade](https://github.com/sgade)
 
 ## License
 

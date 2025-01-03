@@ -24,60 +24,29 @@ public struct Pushover: Sendable {
     /// - Parameters:
     ///   - message: message to be sent
     ///   - user: recipient
-    ///   - completion: handler provided with a result value
-    public func send(_ message: String, to user: String, completion: @escaping @Sendable (Result<Response, Error>) -> Void) {
-        send(Notification(message: message, to: user), completion: completion)
-    }
-
-    /// Send a message directly to a user bypassing further customization options.
     ///
-    /// - Parameters:
-    ///   - message: message to be sent
-    ///   - user: recipient
-    ///
-    /// - Returns: The response value
-    @available(macOS 10.15, iOS 13.0, macCatalyst 13.0, tvOS 13.0, watchOS 13.0, *)
+    /// - Throws: An ``Error`` case.
+    /// - Returns: The ``Response`` value.
     @discardableResult
-    public func send(_ message: String, to user: String) async throws -> Response {
-        return try await withCheckedThrowingContinuation { continuation in
-            send(message, to: user) {
-                continuation.resume(with: $0)
-            }
-        }
-    }
-
-    /// Send a `Notification` to Pushover.
-    ///
-    /// - Parameters:
-    ///   - notification: notification to be sent
-    ///   - completion: handler provided with a result value
-    public func send(_ notification: Notification, completion: @escaping @Sendable (Result<Response, Error>) -> Void) {
-        var request = URLRequest(url: Endpoint.messages)
-        request.httpMethod = "POST"
-        request.add(notification: notification, withToken: self.token)
-
-        API.send(request) { result in
-            switch result {
-            case let .failure(error):
-                completion(.failure(error))
-            case let .success((headers, json)):
-                guard let response = Response(fromJSON: json, andHeaders: headers) else { completion(.failure(.decoding)); return }
-                completion(.success(response))
-            }
-        }
+    public func send(_ message: String, to user: String) async throws(PushoverError) -> Response {
+        try await send(Notification(message: message, to: user))
     }
 
     /// Send a `Notification` to Pushover.
     ///
     /// - Parameter notification: notification to be sent
-    /// - Returns: The response value
-    @available(macOS 10.15, iOS 13.0, macCatalyst 13.0, tvOS 13.0, watchOS 13.0, *)
+    /// - Throws: An ``Error`` case.
+    /// - Returns: The ``Response`` value.
     @discardableResult
-    public func send(_ notification: Notification) async throws -> Response {
-        return try await withCheckedThrowingContinuation { continuation in
-            send(notification) {
-                continuation.resume(with: $0)
-            }
+    public func send(_ notification: Notification) async throws(PushoverError) -> Response {
+        var request = URLRequest(url: Endpoint.messages)
+        request.httpMethod = "POST"
+        request.add(notification: notification, withToken: self.token)
+
+        let (headers, json) = try await API.send(request)
+        guard let response = Response(fromJSON: json, andHeaders: headers) else {
+            throw PushoverError.decoding
         }
+        return response
     }
 }
